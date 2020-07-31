@@ -1,0 +1,105 @@
+<resources>
+    <string name="app_name">Tap, Tap</string>
+    <string name="xposed_desc">Columbus backport</string>
+    <string name="accessibility_service_description">Сервис спец. возможностей TapTap\n\n<b>Важное примечание: никакие данные не собираются ни из одного из ваших приложений, эта служба просто используется для поддержания активного распознавания и обеспечения взаимодействия с устройством</b></string>
+    <string name="toast_no_action_selected">Действие не выбрано</string>
+    <string name="launch_accessibility">Запуск спец. возможностей</string>
+    <string name="setting_gesture">Жесты</string>
+    <string name="setting_gesture_desc">Настройте работу жестов</string>
+    <string name="setting_actions">Действия</string>
+    <string name="settings_actions_desc">Установите действия, которые будут выполняться при использовании жеста</string>
+    <string name="setting_gates">Гейты</string>
+    <string name="setting_gates_desc">Установите ситуации, когда жест не должен запускать действие</string>
+    <string name="setting_feedback">Отклик</string>
+    <string name="setting_feedback_desc">Настройте, как девайс будет оповещать вас об успешном выполнении жеста</string>
+    <string name="setting_gesture_model">Модель устройства</string>
+    <string name="setting_gesture_model_desc">Выберите модель устройства, которую следует использовать для компонента машинного обучения</string>
+    <string name="setting_feedback_vibrate">Вибрация</string>
+    <string name="setting_feedback_vibrate_desc">Устройство вибрирует, когда используется жест и выполняется действие</string>
+    <string name="setting_feedback_wake">Пробуждать устройство</string>
+    <string name="setting_feedback_wake_desc">Пробуждает устройство, когда экран выключен (Примечание: это будет мешать действиям, которые выключают экран!)</string>
+
+    <string-array name="device_model_keys">
+        <item>Pixel 3 XL</item>
+        <item>Pixel 4</item>
+        <item>Pixel 4 XL</item>
+    </string-array>
+
+    <!-- Gates -->
+    <string name="gate_charging_state">На зарядке</string>
+    <string name="gate_charging_state_desc">Блокирует жест на долю секунды при подключении устройства к зарядке</string>
+    <string name="gate_telephony_activity">При звонке</string>
+    <string name="gate_telephony_activity_desc">Блокирует жест, когда устройство находится в режиме вызова. Поддерживаются только телефонные звонки (с VoIP-звонками(по типу WhatsApp) работать не будет)</string>
+    <string name="gate_usb_state">При подключении USB-устройства</string>
+    <string name="gate_usb_state_desc">Блокирует жест на долю секунды при подключении USB-устройства, например, флешки</string>
+    <string name="gate_camera_visibility">При работе камеры</string>
+    <string name="gate_camera_visibility_desc">Блокирует жест при открытии любого приложения камеры. Примечание: Это нарушит работу действия "Запуск камеры".</string>
+    <string name="gate_power_state">При выключенном экране</string>
+    <string name="gate_power_state_desc">Блокирует жест, когда экран устройства выключен</string>
+    <string name="gate_app_showing">В приложении</string>
+    <string name="gate_app_showing_desc">Блокирует жест, когда выбранное приложение открыто</string>
+    <string name="gate_app_showing_desc_formatted">Блокирует жест, когда приложение %1s открыто</string>
+    <string name="action_launch_camera">Запуск камеры</string>
+    <string name="action_launch_camera_desc">Запускает приложение камеры по умолчанию. Это действие будет пропущено, если камера уже запущена.</string>
+    <string name="action_home">Домой</string>
+    <string name="action_home_desc">Имитирует нажатие кнопки "Домой"</string>
+    <string name="action_back">Назад</string>
+    <string name="action_back_desc">Имитирует нажатие кнопки "Назад"</string>
+    <string name="action_recents">Открыть недавние</string>
+    <string name="action_recents_desc">Откроет недавние, имитируя нажатие кнопки "Недавние". На новых устройствах использование этого жеста при открытых недавних вызовет переход на предыдущее открытое приложение</string>
+    <string name="action_notifications">Открыть уведомления</string>
+    <string name="action_notifications_desc">Открывает панель уведомлений</string>
+    <string name="action_quick_settings">Быстрые настройки</string>
+    <string name="action_quick_settings_desc">Открывает панель быстрых настроек</string>
+    <string name="action_screenshot">Скриншот</string>
+    <string name="action_screenshot_desc">Делает скриншот, используя системный UI скриншотов</string>
+    <string name="action_lock_screen">Блокировка экрана</string>
+    <string name="action_lock_screen_desc">Блокирует экран, имитируя нажатие кнопки питания</string>
+    <string name="fab_add_action">Добавить действие</string>
+    <string name="fab_remove_action">Удалить</string>
+    <string name="fab_remove_action_drop">Отпустите, чтобы удалить</string>
+    <string name="add_action_category_launch">Запуск</string>
+    <string name="add_action_category_utilities">Утилиты</string>
+    <string name="add_action_category_actions">Действия</string>
+    <string name="add_action_category_advanced">Расширенное</string>
+    <string name="action_flashlight">Фонарик</string>
+    <string name="action_flashlight_desc">Включает фонарик. Данное действие не будет работать, если камера используется другим приложением.</string>
+    <string name="action_launch_app">Запуск приложения</string>
+    <string name="action_launch_app_desc">Запускает выбранное приложение</string>
+    <string name="action_launch_app_desc_formattable">Запускает %1s. Это действие не будет выполнено, если данное приложение уже запущено.</string>
+    <string name="fab_add_gate">Добавить Гейт</string>
+    <string name="add_gate_category_state">Состояние</string>
+    <string name="add_gate_category_action">Действие</string>
+    <string name="nothing_found">Ничего не найдено</string>
+    <string name="search">Поиск...</string>
+    <string name="show_system_apps">Показывать системные приложения</string>
+    <string name="select_an_app">Выбор приложения</string>
+    <string name="setting_gesture_sensitivity">Чувствительность</string>
+    <string name="setting_gesture_sensitivity_desc">Чувствительность в настоящее время не реализована в коде Google, который использует это приложение. Я активно изучаю, как это можно реализовать, и это может стать доступным в будущей версии.</string>
+    <string name="bs_help_action">Действия - это задачи, которые выполняются при двойном касании задней панели устройства. Действия выполняются в порядке списка - сверху вниз. Если действие выполнено успешно, то дальнейшие действия выполняться не будут. Однако, если действие недоступно (например. если Ассистент при выполнении действия "Запуск Ассистента" уже запущен), то будет выполнено следующее действие ниже него, и так далее, пока одно из них не будет выполнено успешно.\n\nВ будущих версиях этого приложения вы сможете добавлять гейты к действиям (см. меню гейтов приложения), чтобы обеспечить больший контроль над выполнением определенных действий.</string>
+    <string name="bs_help_action_title">Что такое действия?</string>
+    <string name="bs_help_gate">Гейты - это ситуации, которые могут блокировать выполнение жестом каких-либо действий. Для выполнения любого действия все включенные гейты должны быть открыты.\nЕсли сценарий в настоящее время выполняется, например, если экран выключен и включен гейт "При выключенном экране", никакие действия выполняться не будут. Вы можете добавить столько гейтов, сколько вам нравится, и включить/отключить их с помощью переключателей (вместо того, чтобы удалять и повторно добавлять), чтобы сделать конфигурацию быстрее и проще.</string>
+    <string name="bs_help_gate_title">Что такое Гейты?</string>
+    <string name="help">Помощь</string>
+    <string name="action_launch_assistant">Запуск Ассистента</string>
+    <string name="action_launch_assistant_desc">Запускает вашего стандартного ассистента</string>
+    <string name="add_action_category_info">Расширенные действия, такие как интеграция Tasker, скоро появятся!</string>
+
+    <string name="accessibility_info_off">Служба специальных возможностей отключена</string>
+    <string name="accessibility_info_off_desc">Жест в данный момент не работает. Нажмите, чтобы включить</string>
+    <string name="accessibility_info_on">Служба специальных возможностей включена</string>
+    <string name="accessibility_info_on_desc">Если вы хотите отключить жест, нажмите, чтобы выключить сервис</string>
+    <string name="accessibility_info_toast">Выберите "Tap, Tap" в списке сервисов, включите его и вернитесь в Tap, Tap для продолжения</string>
+    <string name="menu_alpha">Это приложение находится в альфе. Нажмите для получения дополнительной информации.</string>
+    <string name="bs_alpha">Это приложение находится на ранней стадии разработки и было выпущено в "Альфа-состоянии", чтобы обеспечить тестирование на множестве устройств. Если вы столкнулись с ошибкой, пожалуйста, сообщите об этом на GitHub как о проблеме. Если вы хотите запросить функцию, разместите ее в теме на XDA или запросите ее на GitHub.\n\nПроверяйте тему на XDA для получения обновлений, как только они будут доступны.\n\nБлагодарю вас за ваше терпение во время разработки.</string>
+    <string name="bs_alpha_title">Альфа</string>
+
+    <string name="category_about">О приложении</string>
+    <string name="about">%1s v%2s</string>
+    <string name="about_summary">Разработано Kieron Quinn / Quinny899 @ XDA\nПеревод: rf0x3d @ telegram</string>
+    <string name="xda_thread">Тема на XDA</string>
+    <string name="github">Исходный код на GitHub</string>
+    <string name="libraries">Сторонние библиотеки</string>
+    <string name="donate">Поддержать разработку</string>
+    <string name="twitter">Читайте меня в Твиттере</string>
+</resources>
