@@ -42,7 +42,7 @@
         
         <com.kieronquinn.app.taptap.preferences.Preference
             android:title="@string/ota_check"
-            android:icon="@drawable/ic_ota_update"
+            android:icon="@drawable/ic_ota_round"
             android:key="ota"/>
 
         <com.kieronquinn.app.taptap.preferences.Preference

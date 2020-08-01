@@ -26,6 +26,7 @@
     <color name="icon_circle_7">#DAD7F8</color>
     <color name="icon_circle_8">#D7F8F8</color>
     <color name="icon_circle_9">#EDD7F8</color>
+    <color name="icon_circle_ota">#FFD6E6</color>
 
     <color name="icon_inside_0">#1A6CD9</color>
     <color name="icon_inside_1">#D91A4A</color>
@@ -37,4 +38,5 @@
     <color name="icon_inside_7">#2F1AD9</color>
     <color name="icon_inside_8">#1AD5D9</color>
     <color name="icon_inside_9">#981AD9</color>
+    <color name="icon_inside_ota">#C2185B</color>
 </resources>
