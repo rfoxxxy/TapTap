@@ -101,6 +101,10 @@
     <string name="about_summary">Created by Kieron Quinn / Quinny899 @ XDA</string>
     <string name="xda_thread">XDA Thread</string>
     <string name="github">GitHub</string>
+    <string name="github_select">Select a repository</string>
+    <string name="github_select_original">Original</string>
+    <string name="github_select_fork">Fork</string>
+    <string name="github_select_title">GitHub</string>
     <string name="libraries">Third party libraries</string>
     <string name="donate">Donate</string>
     <string name="twitter">Follow me on Twitter</string>

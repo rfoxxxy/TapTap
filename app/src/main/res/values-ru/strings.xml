@@ -83,6 +83,8 @@
     <string name="help">Помощь</string>
     <string name="action_launch_assistant">Запуск Ассистента</string>
     <string name="action_launch_assistant_desc">Запускает вашего стандартного ассистента</string>
+    <string name="action_tasker_event">Событие Tasker</string>
+    <string name="action_tasker_event_desc">Запускает плагин событий Tasker</string>
     <string name="add_action_category_info">Расширенные действия, такие как интеграция Tasker, скоро появятся!</string>
 
     <string name="accessibility_info_off">Служба специальных возможностей отключена</string>
@@ -99,6 +101,10 @@
     <string name="about_summary">Разработано Kieron Quinn / Quinny899 @ XDA\nПеревод: rf0x3d @ telegram</string>
     <string name="xda_thread">Тема на XDA</string>
     <string name="github">Исходный код на GitHub</string>
+    <string name="github_select">Выберите репозиторий</string>
+    <string name="github_select_original">Оригинальный</string>
+    <string name="github_select_fork">Форк</string>
+    <string name="github_select_title">GitHub</string>
     <string name="libraries">Сторонние библиотеки</string>
     <string name="donate">Поддержать разработку</string>
     <string name="twitter">Читайте меня в Твиттере</string>

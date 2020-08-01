@@ -12,8 +12,9 @@ class Links {
         const val LINK_XDA = "https://kieronquinn.co.uk/redirect/TapTap/xda"
         const val LINK_DONATE = "https://kieronquinn.co.uk/redirect/TapTap/donate"
         const val LINK_TWITTER = "https://kieronquinn.co.uk/redirect/TapTap/twitter"
+        const val FORK_GITHUB = "https://github.com/rfoxxxy/TapTap"
 
-        private fun startLinkIntent(context: Context, link: String){
+        fun startLinkIntent(context: Context, link: String){
             val intent = Intent(Intent.ACTION_VIEW, Uri.parse(link))
             context.startActivity(intent)
         }

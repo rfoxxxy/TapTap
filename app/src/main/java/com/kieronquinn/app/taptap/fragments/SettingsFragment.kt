@@ -8,10 +8,15 @@ import android.view.MenuInflater
 import android.view.MenuItem
 import android.widget.Toast
 import androidx.core.content.ContextCompat
+import androidx.appcompat.app.AlertDialog
+import androidx.navigation.fragment.FragmentNavigator
 import com.google.android.gms.oss.licenses.OssLicensesMenuActivity
 import com.kieronquinn.app.taptap.BuildConfig
 import com.kieronquinn.app.taptap.R
 import com.kieronquinn.app.taptap.TapAccessibilityService
+import com.kieronquinn.app.taptap.fragments.bottomsheets.ActionBottomSheetFragment
+import com.kieronquinn.app.taptap.fragments.bottomsheets.AlertBottomSheetFragment
+import com.kieronquinn.app.taptap.fragments.bottomsheets.BottomSheetFragment
 import com.kieronquinn.app.taptap.fragments.bottomsheets.GenericBottomSheetFragment
 import com.kieronquinn.app.taptap.preferences.Preference
 import com.kieronquinn.app.taptap.utils.Links
@@ -57,8 +62,31 @@ class SettingsFragment : BaseSettingsFragment() {
                 true
             }
         }
+        findPreference<Preference>("about_github")?.apply {
+            setOnPreferenceClickListener {
+                AlertBottomSheetFragment.create(
+                    getString(R.string.github_select),
+                    R.string.github_select_title,
+                    R.string.github_select_original,
+                    R.string.github_select_fork,
+                    {Links.startLinkIntent(context, Links.LINK_GITHUB); true},
+                    {Links.startLinkIntent(context, Links.FORK_GITHUB); true}
+                ).show(childFragmentManager, "bs_github")
+                /*val alert = AlertDialog.Builder(context)
+                alert.setTitle("GitHub")
+                alert.setMessage(getString(R.string.github_select))
+                alert.setPositiveButton(getString(R.string.github_select_original)) { _, _ ->
+                    Links.startLinkIntent(context, Links.LINK_GITHUB)
+                }
+                alert.setNegativeButton(getString(R.string.github_select_fork)) { _, _ ->
+                    Links.startLinkIntent(context, Links.FORK_GITHUB)
+                }
+                alert.show()*/
+                true
+            }
+        }
         context?.let { context ->
-            Links.setupPreference(context, preferenceScreen, "about_github", Links.LINK_GITHUB)
+            // Links.setupPreference(context, preferenceScreen, "about_github", Links.LINK_GITHUB)
             Links.setupPreference(context, preferenceScreen, "about_xda", Links.LINK_XDA)
             Links.setupPreference(context, preferenceScreen, "about_donate", Links.LINK_DONATE)
             Links.setupPreference(context, preferenceScreen, "about_twitter", Links.LINK_TWITTER)

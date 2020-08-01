@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:layout_marginTop="?android:actionBarSize"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:paddingTop="@dimen/margin_small"
+    android:paddingStart="@dimen/margin_large"
+    android:paddingEnd="@dimen/margin_large"
+    android:paddingBottom="@dimen/margin_extra_large"
+    android:clipToPadding="false">
+    
+    <androidx.cardview.widget.CardView
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:id="@+id/github_original"
+        android:layout_marginEnd="@dimen/margin_small"
+        android:focusable="true"
+        android:clickable="true"
+        android:foreground="?selectableItemBackground"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintEnd_toStartOf="@+id/github_fork"
+        app:cardCornerRadius="@dimen/margin_small">
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="@dimen/margin_large"
+            android:drawableStart="@drawable/ic_github"
+            android:drawablePadding="@dimen/margin_large"
+            android:gravity="center_vertical"
+            android:text="@string/github_select_original"
+            android:textAppearance="@style/TextAppearance.AppCompat.Medium.TapTap.Primary" />
+
+    </androidx.cardview.widget.CardView>
+
+    <androidx.cardview.widget.CardView
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:id="@+id/github_fork"
+        android:layout_marginStart="@dimen/margin_small"
+        android:focusable="true"
+        android:clickable="true"
+        android:foreground="?selectableItemBackground"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@id/github_original"
+        app:layout_constraintTop_toTopOf="parent"
+        app:cardCornerRadius="@dimen/margin_small">
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="@dimen/margin_large"
+            android:drawableStart="@drawable/ic_github_fork"
+            android:drawablePadding="@dimen/margin_large"
+            android:gravity="center_vertical"
+            android:text="@string/github_select_fork"
+            android:textAppearance="@style/TextAppearance.AppCompat.Medium.TapTap.Primary" />
+
+    </androidx.cardview.widget.CardView>
+
+</androidx.constraintlayout.widget.ConstraintLayout>
