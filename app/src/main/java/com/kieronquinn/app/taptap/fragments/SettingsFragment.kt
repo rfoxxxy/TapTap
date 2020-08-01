@@ -8,19 +8,17 @@ import android.view.MenuInflater
 import android.view.MenuItem
 import android.widget.Toast
 import androidx.core.content.ContextCompat
-import androidx.appcompat.app.AlertDialog
-import androidx.navigation.fragment.FragmentNavigator
 import com.google.android.gms.oss.licenses.OssLicensesMenuActivity
 import com.kieronquinn.app.taptap.BuildConfig
 import com.kieronquinn.app.taptap.R
 import com.kieronquinn.app.taptap.TapAccessibilityService
-import com.kieronquinn.app.taptap.fragments.bottomsheets.ActionBottomSheetFragment
 import com.kieronquinn.app.taptap.fragments.bottomsheets.AlertBottomSheetFragment
-import com.kieronquinn.app.taptap.fragments.bottomsheets.BottomSheetFragment
 import com.kieronquinn.app.taptap.fragments.bottomsheets.GenericBottomSheetFragment
 import com.kieronquinn.app.taptap.preferences.Preference
 import com.kieronquinn.app.taptap.utils.Links
+import com.kieronquinn.app.taptap.utils.OTA
 import com.kieronquinn.app.taptap.utils.isAccessibilityServiceEnabled
+import java.lang.Exception
 
 class SettingsFragment : BaseSettingsFragment() {
 
@@ -62,6 +60,12 @@ class SettingsFragment : BaseSettingsFragment() {
                 true
             }
         }
+        findPreference<Preference>("ota")?.apply {
+            setOnPreferenceClickListener {
+                Thread {OTA.runChecking(context, BuildConfig.VERSION_CODE.toString(), childFragmentManager, true)}.start()
+                true
+            }
+        }
         findPreference<Preference>("about_github")?.apply {
             setOnPreferenceClickListener {
                 AlertBottomSheetFragment.create(
@@ -90,6 +94,7 @@ class SettingsFragment : BaseSettingsFragment() {
             Links.setupPreference(context, preferenceScreen, "about_xda", Links.LINK_XDA)
             Links.setupPreference(context, preferenceScreen, "about_donate", Links.LINK_DONATE)
             Links.setupPreference(context, preferenceScreen, "about_twitter", Links.LINK_TWITTER)
+            Thread {OTA.runChecking(context, BuildConfig.VERSION_CODE.toString(), childFragmentManager, false)}.start()
         }
         setHasOptionsMenu(true)
     }

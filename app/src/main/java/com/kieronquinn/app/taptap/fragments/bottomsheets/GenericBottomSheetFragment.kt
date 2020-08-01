@@ -29,6 +29,7 @@ class GenericBottomSheetFragment : BottomSheetFragment() {
         layout = R.layout.fragment_bottomsheet_generic
         okListener = {true}
         isCancelable = true
+        isSwipeable = true
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {

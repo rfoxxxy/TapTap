@@ -41,6 +41,11 @@
             android:key="about_about"/>
 
         <com.kieronquinn.app.taptap.preferences.Preference
+            android:title="@string/ota_check"
+            android:icon="@drawable/ic_ota_update"
+            android:key="ota"/>
+
+        <com.kieronquinn.app.taptap.preferences.Preference
             android:title="@string/xda_thread"
             android:icon="@drawable/ic_xda"
             android:key="about_xda"/>
