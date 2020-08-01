@@ -13,6 +13,9 @@ class Links {
         const val LINK_DONATE = "https://kieronquinn.co.uk/redirect/TapTap/donate"
         const val LINK_TWITTER = "https://kieronquinn.co.uk/redirect/TapTap/twitter"
         const val FORK_GITHUB = "https://github.com/rfoxxxy/TapTap"
+        const val APK_REPO = FORK_GITHUB
+        const val GITHUB_RELEASES = "https://api.github.com/repos/rfoxxxy/TapTap/releases/latest"
+        const val APK_LINK = "https://github.com/rfoxxxy/TapTap/releases/download/\$code\$/app-release.apk"
 
         fun startLinkIntent(context: Context, link: String){
             val intent = Intent(Intent.ACTION_VIEW, Uri.parse(link))

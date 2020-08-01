@@ -119,6 +119,7 @@
     <string name="ota_title">An update available!</string>
     <string name="ota_update">Download</string>
     <string name="ota_later">Later</string>
+    <string name="downloading_description">Please, wait…</string>
     <string name="libraries">Third party libraries</string>
     <string name="donate">Donate</string>
     <string name="twitter">Follow me on Twitter</string>

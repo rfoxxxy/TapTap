@@ -105,7 +105,7 @@
 
     <string name="category_about">О приложении</string>
     <string name="about">%1s v%2s</string>
-    <string name="about_summary">Разработано Kieron Quinn / Quinny899 @ XDA\nПеревод: rf0x3d @ telegram</string>
+    <string name="about_summary">Создано Kieron Quinn / Quinny899 @ XDA\nБлагодаря вкладу сообщества, в том числе: joaomgcd, timfedo, gcantoni\nПеревод: rf0x3d @ telegram</string>
     <string name="xda_thread">Тема на XDA</string>
     <string name="github">Исходный код на GitHub</string>
     <string name="github_select">Выберите репозиторий</string>
@@ -113,12 +113,13 @@
     <string name="github_select_fork">Форк</string>
     <string name="github_select_title">GitHub</string>
     <string name="ota_check">Проверить обновления</string>
-    <string name="ota_checking">Проверка обновлений...</string>
+    <string name="ota_checking">Проверка обновлений…</string>
     <string name="ota_simple_title">OTA</string>
     <string name="no_updates">У вас установлена последняя версия</string>
     <string name="ota_title">Доступно обновление!</string>
     <string name="ota_update">Загрузить</string>
     <string name="ota_later">Позже</string>
+    <string name="downloading_description">Пожалуйста, подождите…</string>
     <string name="libraries">Сторонние библиотеки</string>
     <string name="donate">Поддержать разработку</string>
     <string name="twitter">Читайте меня в Твиттере</string>
