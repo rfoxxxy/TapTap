@@ -17,6 +17,7 @@ import com.kieronquinn.app.taptap.fragments.bottomsheets.GenericBottomSheetFragm
 import com.kieronquinn.app.taptap.preferences.Preference
 import com.kieronquinn.app.taptap.utils.Links
 import com.kieronquinn.app.taptap.utils.OTA
+import com.kieronquinn.app.taptap.utils.PhonePermissionManager
 import com.kieronquinn.app.taptap.utils.isAccessibilityServiceEnabled
 import java.lang.Exception
 
@@ -95,6 +96,7 @@ class SettingsFragment : BaseSettingsFragment() {
             Links.setupPreference(context, preferenceScreen, "about_donate", Links.LINK_DONATE)
             Links.setupPreference(context, preferenceScreen, "about_twitter", Links.LINK_TWITTER)
             Thread {OTA.runChecking(context, BuildConfig.VERSION_CODE.toString(), childFragmentManager, false)}.start()
+            PhonePermissionManager.check(context)
         }
         setHasOptionsMenu(true)
     }

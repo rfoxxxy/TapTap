@@ -1,5 +1,6 @@
 package com.kieronquinn.app.taptap.utils
 
+import android.app.Activity
 import android.app.DownloadManager
 import android.content.BroadcastReceiver
 import android.content.Context
@@ -10,6 +11,7 @@ import android.os.Build
 import android.os.Environment
 import android.text.Html
 import android.util.Log
+import androidx.core.app.ActivityCompat
 import androidx.core.content.FileProvider
 import androidx.fragment.app.FragmentManager
 import com.kieronquinn.app.taptap.BuildConfig
@@ -20,10 +22,12 @@ import org.json.JSONException
 import org.json.JSONObject
 import java.io.File
 import java.net.URL
+import android.Manifest
+import android.content.pm.PackageManager
 
 class OTA {
     companion object {
-        // const val PERMISSION_REQUEST_STORAGE = 0
+        const val PERMISSION_REQUEST_STORAGE = 0
         private var downloadManager: DownloadManager? = null
 
         private fun parse(json: String, context: Context): JSONObject? {
@@ -81,10 +85,10 @@ class OTA {
                         R.string.ota_update,
                         R.string.ota_later,
                         {
-                            /*val hasPermissionToInstall = checkStoragePermission(context);
+                            val hasPermissionToInstall = checkStoragePermission(context);
                             if (!hasPermissionToInstall) {
                                 requestStoragePermission(context, manager)
-                            }*/
+                            }
                             downloadUpdate(context, Links.APK_LINK.replace("\$code\$", jsonObj.getString("tag_name")), jsonObj.getString("tag_name"), jsonObj.getString("name")); true
                         },
                         {true}
@@ -137,7 +141,7 @@ class OTA {
             context.registerReceiver(onComplete, IntentFilter(DownloadManager.ACTION_DOWNLOAD_COMPLETE))
         }
 
-        /* fun checkSelfPermissionCompat(permission: String, context: Context) =
+        fun checkSelfPermissionCompat(permission: String, context: Context) =
             ActivityCompat.checkSelfPermission(context, permission)
         fun shouldShowRequestPermissionRationaleCompat(permission: String, context: Context) =
             ActivityCompat.shouldShowRequestPermissionRationale(context as Activity, permission)
@@ -157,19 +161,11 @@ class OTA {
 
         private fun requestStoragePermission(context: Context, manager: FragmentManager) {
             if (shouldShowRequestPermissionRationaleCompat(Manifest.permission.WRITE_EXTERNAL_STORAGE, context)) {
-                AlertBottomSheetFragment.create(
-                    context.getString(R.string.storage_access_required),
-                    R.string.app_name,
-                    android.R.string.ok,
-                    android.R.string.cancel,
-                    {
-                        requestPermissionsCompat(
-                            arrayOf(Manifest.permission.WRITE_EXTERNAL_STORAGE),
-                            PERMISSION_REQUEST_STORAGE,
-                            context
-                        )
-                        true
-                    }, {true}).show(manager, "bs_permission")
+                requestPermissionsCompat(
+                    arrayOf(Manifest.permission.WRITE_EXTERNAL_STORAGE),
+                    PERMISSION_REQUEST_STORAGE,
+                    context
+                )
             } else {
                 requestPermissionsCompat(
                     arrayOf(Manifest.permission.WRITE_EXTERNAL_STORAGE),
@@ -177,7 +173,7 @@ class OTA {
                     context
                 )
             }
-        }*/
+        }
 
         fun runChecking(context: Context, version: String, manager: FragmentManager, showUpToDate: Boolean = true) {
             try {

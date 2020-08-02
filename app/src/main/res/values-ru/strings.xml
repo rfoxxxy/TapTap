@@ -105,7 +105,7 @@
 
     <string name="category_about">О приложении</string>
     <string name="about">%1s v%2s</string>
-    <string name="about_summary">Создано Kieron Quinn / Quinny899 @ XDA\nБлагодаря вкладу сообщества, в том числе: joaomgcd, timfedo, gcantoni\nПеревод: rf0x3d @ telegram</string>
+    <string name="about_summary">Создано Kieron Quinn / Quinny899 @ XDA\nБлагодаря вкладу сообщества, в том числе: João Dias, timfedo, Giorgio Cantoni, Fedor Shatokhin, Rodrigo Souza, Petro Bilyi, Kevin Kung\nПеревод: rf0x3d @ telegram</string>
     <string name="xda_thread">Тема на XDA</string>
     <string name="github">Исходный код на GitHub</string>
     <string name="github_select">Выберите репозиторий</string>
@@ -142,4 +142,9 @@
     <string name="action_volume_toggle_mute_desc">Включить/выключить звук</string>
     <string name="action_wake_device">Пробуждение устройства</string>
     <string name="action_wake_device_desc">Пробуждает устройство, если экран выключен. Это обходит настройку в настройках Отклика, пропускается если экран включен и не будет работать, если включен Гейт \"При выключенном экране\"</string>
+    <string name="action_launch_shortcut">Запустить ярлык</string>
+    <string name="action_launch_shortcut_desc">Запустите ярлык, например, направление Google Maps</string>
+    <string name="action_launch_shortcut_desc_formattable">Запускает %1s (ярлык в приложении)</string>
+    <string name="action_launch_shortcut_toast">Этот ярлык в настоящее время не поддерживается</string>
+    <string name="call_phone_permission_toast">Вам необходимо предоставить Tap, Tap разрешение \"Телефон\", чтобы использовать некоторые действия быстрого доступа</string>
 </resources>
