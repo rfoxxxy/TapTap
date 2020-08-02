@@ -3,13 +3,9 @@ package com.kieronquinn.app.taptap.columbus.actions
 import android.content.Context
 import android.content.Intent
 import android.widget.Toast
-import com.google.android.systemui.columbus.actions.Action
-import com.google.android.systemui.columbus.sensors.GestureSensor
 import com.kieronquinn.app.taptap.R
 import com.kieronquinn.app.taptap.TapAccessibilityService
-import com.kieronquinn.app.taptap.utils.PhonePermissionManager
 import com.kieronquinn.app.taptap.utils.deserialize
-import com.kieronquinn.app.taptap.utils.isAppLaunchable
 
 class LaunchShortcut(context: Context, private val launchIntentString: String) : ActionBase(context) {
 
@@ -44,7 +40,6 @@ class LaunchShortcut(context: Context, private val launchIntentString: String) :
             e.printStackTrace()
             //Special case for CALL_PHONE required permissions (it'd be a really stupid idea for someone to actually *want* that action though...)
             if(e.message?.contains("android.permission.CALL_PHONE") == true){
-                // PhonePermissionManager.check(context)
                 Toast.makeText(context, context.getString(R.string.call_phone_permission_toast), Toast.LENGTH_LONG).show()
             }
         }
