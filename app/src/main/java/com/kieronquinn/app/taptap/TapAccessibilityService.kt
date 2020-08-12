@@ -3,6 +3,7 @@ package com.kieronquinn.app.taptap
 import android.accessibilityservice.AccessibilityService
 import android.app.ActivityManager
 import android.content.Context
+import android.content.Intent
 import android.content.SharedPreferences
 import android.media.AudioManager
 import android.util.Log
@@ -20,7 +21,6 @@ import com.google.android.systemui.columbus.sensors.config.GestureConfiguration
 import com.kieronquinn.app.taptap.columbus.actions.*
 import com.kieronquinn.app.taptap.columbus.feedback.HapticClickCompat
 import com.kieronquinn.app.taptap.columbus.feedback.WakeDevice
-import com.kieronquinn.app.taptap.impl.KeyguardStateControllerImpl
 import com.kieronquinn.app.taptap.models.ActionInternal
 import com.kieronquinn.app.taptap.models.TapAction
 import com.kieronquinn.app.taptap.models.TfModel
@@ -33,16 +33,13 @@ class TapAccessibilityService : AccessibilityService(),
 
     companion object {
         private const val TAG = "TAS"
+        val KEY_ACCESSIBILITY_START = "accessibility_start"
     }
 
     private var columbusService: ColumbusService? = null
     private var gestureSensorImpl: GestureSensorImpl? = null
 
     private var currentPackageName: String = "android"
-
-    private val keyguardStateController by lazy {
-        KeyguardStateControllerImpl()
-    }
 
     private var wakefulnessLifecycle: WakefulnessLifecycle? = null
 
@@ -74,6 +71,9 @@ class TapAccessibilityService : AccessibilityService(),
 
         //Create the service
         this.columbusService = ColumbusService::class.java.constructors.first().newInstance(getColumbusActions(), getColumbusFeedback(), getGates(context), gestureSensorImpl, powerManagerWrapper, metricsLogger) as ColumbusService
+        configureTap()
+
+        sendBroadcast(Intent(KEY_ACCESSIBILITY_START).setPackage(packageName))
     }
 
     private fun getColumbusActions() : List<Action> {
@@ -102,6 +102,11 @@ class TapAccessibilityService : AccessibilityService(),
                     this,
                     GLOBAL_ACTION_RECENTS
                 )
+                TapAction.SPLIT_SCREEN -> AccessibilityServiceGlobalAction(
+                    this,
+                    GLOBAL_ACTION_TOGGLE_SPLIT_SCREEN
+                )
+                TapAction.REACHABILITY -> LaunchReachability(this)
                 TapAction.SCREENSHOT -> AccessibilityServiceGlobalAction(
                     this,
                     GLOBAL_ACTION_TAKE_SCREENSHOT
@@ -113,6 +118,10 @@ class TapAccessibilityService : AccessibilityService(),
                 TapAction.NOTIFICATIONS -> AccessibilityServiceGlobalAction(
                     this,
                     GLOBAL_ACTION_NOTIFICATIONS
+                )
+                TapAction.POWER_DIALOG -> AccessibilityServiceGlobalAction(
+                    this,
+                    GLOBAL_ACTION_POWER_DIALOG
                 )
                 TapAction.FLASHLIGHT -> Flashlight(this)
                 TapAction.LAUNCH_APP -> LaunchApp(this, action.data ?: "")
@@ -181,6 +190,11 @@ class TapAccessibilityService : AccessibilityService(),
             //Refresh actions
             refreshColumbusActions()
         }
+        if(key == SHARED_PREFERENCES_KEY_SENSITIVITY){
+            //Reconfigure
+            configureTap()
+        }
+
     }
 
     private fun refreshColumbusFeedback(){
@@ -206,5 +220,13 @@ class TapAccessibilityService : AccessibilityService(),
 
     fun getCurrentPackageName(): String {
         return currentPackageName
+    }
+
+    private fun configureTap(){
+        gestureSensorImpl?.getTapRT()?.run {
+            val sensitivity = sharedPreferences.getString(SHARED_PREFERENCES_KEY_SENSITIVITY, "0.05")?.toFloatOrNull() ?: 0.05f
+            Log.d("TapRT", "getMinNoiseToTolerate ${positivePeakDetector.getMinNoiseToTolerate()} sensitivity $sensitivity")
+            positivePeakDetector.setMinNoiseTolerate(sensitivity)
+        }
     }
 }

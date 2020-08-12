@@ -1,6 +1,5 @@
 <resources>
     <string name="app_name">Tap, Tap</string>
-    <string name="xposed_desc">Columbus backport</string>
     <string name="accessibility_service_description">Служба доступності TapTap\n\n<b>Важливе примітка: дані із жодного з ваших додатків не збираються. Ця служба просто використовується для підтримки активного розпізнавання і взаємодії з пристроєм.</b></string>
     <string name="toast_no_action_selected">Не вибрано жодної дії</string>
     <string name="launch_accessibility">Запустити Доступності</string>
@@ -77,7 +76,6 @@
     <string name="show_system_apps">Показати системні додатки</string>
     <string name="select_an_app">Виберіть додаток</string>
     <string name="setting_gesture_sensitivity">Чутливість</string>
-    <string name="setting_gesture_sensitivity_desc">Наразі чутливість не реалізована в коді Google, який використовується цим додатком. Я активно вивчаю, як це можливо зробити, це може стати доступним у наступній версії.</string>
     <string name="bs_help_action">Дії — це завдання, які виконуються при подвійному натисканні на задню частину пристрою. Дії виконуються в порядку списку — зверху до низу. Якщо дія може бути успішно виконано, подальші дії не виконуватимуться. Однак, якщо дія недоступно (наприклад, якщо асистент для дії \"Запуск асистента\" вже запущено), буде виконано такі дії під ним і т.д., Поки воно не буде успішно виконано. \n\nВ майбутніх версіях У цьому додатку ви зможете додавати заборони до дій (див. Меню «Заборони» додатка), щоб забезпечити більший контроль над виконанням певних дій.</string>
     <string name="bs_help_action_title">Що таке Дії?</string>
     <string name="bs_help_gate">Заборони — це ситуації, які можуть блокувати жест від виконання будь-яких дій. Для виконання будь-якої дії всі включені заборони не повинні справджуватися. \nЯкщо сценарій наразі виконується, наприклад, якщо екран вимкнено та параметр \"Екран вимкнений\", жодні дії не виконуватимуться. Ви можете додати скільки завгодно заборон і включити/відключити їх за допомогою перемикачів (замість того, щоб видаляти та повторно додавати), щоб зробити налаштування швидшим та простішим.</string>
@@ -99,7 +97,7 @@
 
     <string name="category_about">Про</string>
     <string name="about">%1s v%2s</string>
-    <string name="about_summary">Створено Kieron Quinn / Quinny899 @ XDA\nЗавдяки внескам громади, в тому числі: joaomgcd, timfedo, gcantoni</string>
+    <string name="about_summary">Створено Kieron Quinn / Quinny899 @ XDA\nЗавдяки внескам громади, в тому числі: %1s</string>
     <string name="xda_thread">XDA Thread</string>
     <string name="github">GitHub</string>
     <string name="libraries">Сторонні бібліотеки</string>
