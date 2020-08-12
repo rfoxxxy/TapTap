@@ -30,13 +30,17 @@ class OTA {
         const val PERMISSION_REQUEST_STORAGE = 0
         private var downloadManager: DownloadManager? = null
 
-        private fun parse(json: String, context: Context): JSONObject? {
+        private fun parse(json: String, context: Context?, startIntent: Boolean = true): JSONObject? {
             var jsonObject: JSONObject? = null
             try {
                 jsonObject = JSONObject(json)
             } catch (e: JSONException) {
                 Log.d("TapTap", e.stackTrace.toString())
-                Links.startLinkIntent(context, Links.APK_REPO + "/releases")
+                if (startIntent){
+                    if (context != null) {
+                        Links.startLinkIntent(context, Links.APK_REPO + "/releases")
+                    }
+                }
             }
             return jsonObject
         }
@@ -60,6 +64,20 @@ class OTA {
             request.setDescription(context.getString(R.string.downloading_description))
             showInstallOption(destination, uri, context)
             downloadManager?.enqueue(request)
+        }
+
+        private fun hasUpdates(version: String): Boolean {
+            val resp = URL(Links.GITHUB_RELEASES).readText()
+            val jsonObj = parse(resp, null, false)
+            if (jsonObj == null) {
+                return false
+            } else {
+                return if (jsonObj.getString("tag_name") == version && BuildConfig.BUILD_TYPE != "debug") {
+                    false
+                } else {
+                    true
+                }
+            }
         }
 
         private fun checkUpdates(version: String, context: Context, manager: FragmentManager, showUpToDate: Boolean = true){
@@ -87,7 +105,7 @@ class OTA {
                         {
                             val hasPermissionToInstall = checkStoragePermission(context);
                             if (!hasPermissionToInstall) {
-                                requestStoragePermission(context, manager)
+                                requestStoragePermission(context)
                             }
                             downloadUpdate(context, Links.APK_LINK.replace("\$code\$", jsonObj.getString("tag_name")), jsonObj.getString("tag_name"), jsonObj.getString("name")); true
                         },
@@ -159,7 +177,7 @@ class OTA {
                     PackageManager.PERMISSION_GRANTED
         }
 
-        private fun requestStoragePermission(context: Context, manager: FragmentManager) {
+        private fun requestStoragePermission(context: Context) {
             if (shouldShowRequestPermissionRationaleCompat(Manifest.permission.WRITE_EXTERNAL_STORAGE, context)) {
                 requestPermissionsCompat(
                     arrayOf(Manifest.permission.WRITE_EXTERNAL_STORAGE),
@@ -180,6 +198,18 @@ class OTA {
                 return checkUpdates(version, context, manager, showUpToDate)
             } catch (e: Exception) {
                 return
+            }
+        }
+
+        fun hasUpdate(version: String, callback: () -> (Unit)): Boolean {
+            try {
+                val update = hasUpdates(version)
+                if (update) {
+                    callback()
+                }
+                return update
+            } catch (e: Exception) {
+                return false
             }
         }
     }

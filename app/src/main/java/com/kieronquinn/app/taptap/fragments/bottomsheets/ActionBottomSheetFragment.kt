@@ -34,6 +34,7 @@ import com.kieronquinn.app.taptap.models.ActionInternal
 import com.kieronquinn.app.taptap.models.ActionDataTypes
 import com.kieronquinn.app.taptap.utils.*
 import dev.chrisbanes.insetter.Insetter
+import dev.chrisbanes.insetter.applySystemGestureInsetsToMargin
 import kotlinx.android.synthetic.main.fragment_bottomsheet_action.*
 import net.dinglisch.android.tasker.TaskerIntent
 
@@ -101,6 +102,7 @@ class ActionBottomSheetFragment : BottomSheetDialogFragment(), NavController.OnD
                 onBackPressed()
             }
         }
+        view.applySystemGestureInsetsToMargin(bottom = true)
         navHostFragment.childFragmentManager.addOnBackStackChangedListener {
             if (navHostFragment.childFragmentManager.backStackEntryCount == 0) {
                 bs_toolbar.navigationIcon = ContextCompat.getDrawable(bs_toolbar.context, R.drawable.ic_close)

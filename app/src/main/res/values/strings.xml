@@ -114,7 +114,9 @@
     <string name="github_select_fork">Fork</string>
     <string name="github_select_title">GitHub</string>
     <string name="ota_check">Check updates</string>
-    <string name="ota_checking">Checking updates...</string>
+    <string name="ota_checking">Checking updates…</string>
+    <string name="setting_ota_checking">Autocheck updates</string>
+    <string name="setting_ota_desc">Check updates automatically on startup</string>
     <string name="ota_simple_title">OTA</string>
     <string name="no_updates">No updates available</string>
     <string name="ota_title">An update available!</string>

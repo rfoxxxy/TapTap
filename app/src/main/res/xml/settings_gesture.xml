@@ -13,4 +13,11 @@
         android:key="gesture_sensitivity"
         android:summary="@string/setting_gesture_sensitivity_desc"/>
 
+    <com.kieronquinn.app.taptap.preferences.SwitchPreference
+        android:icon="@drawable/ic_ota"
+        android:title="@string/setting_ota_checking"
+        android:key="ota_checking"
+        android:defaultValue="true"
+        android:summary="@string/setting_ota_desc"/>
+
 </PreferenceScreen>

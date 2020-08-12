@@ -4,7 +4,6 @@ import android.content.BroadcastReceiver
 import android.content.Context
 import android.content.Intent
 import android.content.IntentFilter
-import android.graphics.Color
 import android.net.Uri
 import android.os.Bundle
 import android.os.PowerManager
@@ -22,9 +21,7 @@ import com.kieronquinn.app.taptap.activities.SettingsActivity
 import com.kieronquinn.app.taptap.fragments.bottomsheets.AlertBottomSheetFragment
 import com.kieronquinn.app.taptap.fragments.bottomsheets.GenericBottomSheetFragment
 import com.kieronquinn.app.taptap.preferences.Preference
-import com.kieronquinn.app.taptap.utils.Links
-import com.kieronquinn.app.taptap.utils.OTA
-import com.kieronquinn.app.taptap.utils.isAccessibilityServiceEnabled
+import com.kieronquinn.app.taptap.utils.*
 
 class SettingsFragment : BaseSettingsFragment() {
 
@@ -38,6 +35,7 @@ class SettingsFragment : BaseSettingsFragment() {
     override fun onCreatePreferences(savedInstanceState: Bundle?, rootKey: String?) {
         super.onCreatePreferences(savedInstanceState, rootKey)
         addPreferencesFromResource(R.xml.settings_main)
+        val SHARED_PREFERENCES_KEY_OTA_CHECKING = "ota_checking"
         getPreference("gesture"){
             it.setOnPreferenceClickListener {
                 navigate(R.id.action_settingsFragment_to_settingsGestureFragment)
@@ -89,12 +87,21 @@ class SettingsFragment : BaseSettingsFragment() {
                 true
             }
         }
+        val isEnabledChecking =
+            sharedPreferences?.getBoolean(SHARED_PREFERENCES_KEY_OTA_CHECKING, true)
         findPreference<Preference>("ota")?.apply {
             setOnPreferenceClickListener {
                 Thread {OTA.runChecking(context, BuildConfig.VERSION_CODE.toString(), childFragmentManager, true)}.start()
                 true
             }
         }
+        Thread {
+            OTA.hasUpdate(BuildConfig.VERSION_CODE.toString()) {
+                findPreference<Preference>("ota")?.apply {
+                    summary = getString(R.string.ota_title)
+                }
+            }
+        }.start()
         findPreference<Preference>("about_github")?.apply {
             setOnPreferenceClickListener {
                 AlertBottomSheetFragment.create(
@@ -123,7 +130,9 @@ class SettingsFragment : BaseSettingsFragment() {
             Links.setupPreference(context, preferenceScreen, "about_xda", Links.LINK_XDA)
             Links.setupPreference(context, preferenceScreen, "about_donate", Links.LINK_DONATE)
             Links.setupPreference(context, preferenceScreen, "about_twitter", Links.LINK_TWITTER)
-            Thread {OTA.runChecking(context, BuildConfig.VERSION_CODE.toString(), childFragmentManager, false)}.start()
+            if (isEnabledChecking!!) {
+                Thread {OTA.runChecking(context, BuildConfig.VERSION_CODE.toString(), childFragmentManager, false)}.start()
+            }
         }
         setHasOptionsMenu(true)
     }
@@ -184,7 +193,14 @@ class SettingsFragment : BaseSettingsFragment() {
     }
 
     private fun showBatteryInfoBottomSheet(){
-        GenericBottomSheetFragment.create(getString(R.string.bs_battery_content), R.string.battery_and_optimisation, android.R.string.ok, R.string.bs_battery_positive, "https://dontkillmyapp.com/").show(childFragmentManager, "bs_alpha")
+        AlertBottomSheetFragment.create(
+            getString(R.string.bs_battery_content),
+            R.string.battery_and_optimisation,
+            android.R.string.ok,
+            R.string.bs_battery_positive,
+            {true},
+            { context?.let { Links.startLinkIntent(it, "https://dontkillmyapp.com/") }; true}
+        ).show(childFragmentManager, "bs_killing")
     }
 
 }
